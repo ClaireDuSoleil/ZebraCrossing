@@ -1,4 +1,4 @@
-<img align="right" src="https://raw.github.com/wiki/zxing/zxing/zxing-logo.png"/>
+<img align="right" src="https://raw.github.com/wiki/ClaireDuSoleil/ZebraCrossing/zxing-logo.png"/>
 
 # ZebraCrossing C++ Port
 
