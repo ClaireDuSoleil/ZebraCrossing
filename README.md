@@ -13,7 +13,7 @@ Please install [cmake](http://www.cmake.org/cmake/resources/software.html) and m
 
 This is how cmake works with Visual Studio 2013 to build Win32 release and debug:
 
-  1. cd to root directory or distribution
+  1. cd to root directory of distribution
   2. mkdir build
   3. cd build
   4. cmake -G "Visual Studio 12" ..  
