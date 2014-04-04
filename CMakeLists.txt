@@ -55,12 +55,14 @@ endif()
 include_directories("./src/libsrc/")
 add_library(libzxing STATIC ${LIBZXING_FILES})
 set_target_properties(libzxing PROPERTIES PREFIX "")
-find_package(Iconv)
-if(ICONV_FOUND)
+if(!WIN32)
+  find_package(Iconv)
+  if(ICONV_FOUND)
     include_directories(${ICONV_INCLUDE_DIR})
     target_link_libraries(libzxing ${ICONV_LIBRARIES})
-else()
+  else()
     add_definitions(-DNO_ICONV=1)
+  endif()
 endif()
 
 # Add cli executable.
@@ -71,16 +73,3 @@ file(GLOB_RECURSE ZXING_FILES
 add_executable(zxing ${ZXING_FILES})
 target_link_libraries(zxing libzxing)
 
-# Add testrunner executable.
-find_package(CPPUNIT)
-if(CPPUNIT_FOUND)
-    file(GLOB_RECURSE TESTRUNNER_FILES
-        "./src/tests/src/*.cpp"
-        "./src/tests/src/*.h"
-    )
-    add_executable(testrunner ${TESTRUNNER_FILES})
-    include_directories(${CPPUNIT_INCLUDE_DIR})
-    target_link_libraries(testrunner libzxing  ${CPPUNIT_LIBRARIES})
-else()
-    message(WARNING "Not building testrunner, because CppUnit is missing")
-endif()
